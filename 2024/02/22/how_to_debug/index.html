@@ -15,7 +15,7 @@
 <meta property="og:description" content="這篇文章是寫給計程新手的指南，雖然我自己也不是什麼強者，但還是分享一下我自己當初修計程時累積的技巧和經驗，希望可以對未來計程卡關的人有所幫助。 編譯方法考試的時候是使用 VScode，沒有網路，所以你必須使用 cmd 來編譯。  單檔案編譯  把 file.c 編譯成一個叫 run 的檔案  gcc file.c -o run  執行 run  .&#x2F;run  其中 file.c 是你的檔名，run">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-02-22T06:44:47.000Z">
-<meta property="article:modified_time" content="2024-08-08T02:27:50.501Z">
+<meta property="article:modified_time" content="2024-08-19T12:44:42.941Z">
 <meta property="article:author" content="Cell">
 <meta property="article:tag" content="台大">
 <meta property="article:tag" content="程式">
@@ -237,22 +237,10 @@
 <li><p>故意誘發錯誤訊息<br>假設我現在因為不明原因一直有某個測資 WA，然後我猜測可能是發生了某個情況。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    ...someting code</span><br><span class="line">    <span class="title function_">if</span><span class="params">(REcondition)</span> <span class="title function_">exit</span><span class="params">(<span class="number">-1</span>)</span>; <span class="comment">// RE</span></span><br><span class="line">    ...someting code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果 condition 是 true，那麼就會變成 RE，這樣我就可以猜測我在這個情況下會不會 RE，當然你也可以製造 WA 或是 TLE 等等。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    ...someting code</span><br><span class="line">    <span class="title function_">if</span><span class="params">(TLEcondition)</span>&#123; <span class="comment">//TLE</span></span><br><span class="line">        <span class="type">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>) a++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(WAcondition)&#123; <span class="comment">// WA</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;This must not be answer&quot;</span>);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ...someting code</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但計程的考試有提交次數限制，要注意這點。</p>
 </li>
 </ol>
-<pre><code class="c">int main()&#123;
-    ...someting code
-    if(TLEcondition)&#123; //TLE
-        int a=0;
-        while(true) a++;
-    &#125;
-    if(WAcondition)&#123; // WA
-        printf(&quot;This must not be answer&quot;);
-        exit(0);
-    &#125;
-    ...someting code
-&#125;
-但計程的考試有提交次數限制，要注意這點。
-</code></pre>
 
   </div>
 </article>
