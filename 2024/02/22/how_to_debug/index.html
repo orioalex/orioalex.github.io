@@ -15,7 +15,7 @@
 <meta property="og:description" content="這篇文章是寫給計程新手的指南，雖然我自己也不是什麼強者，但還是分享一下我自己當初修計程時累積的技巧和經驗，希望可以對未來計程卡關的人有所幫助。 編譯方法考試的時候是使用 VScode，沒有網路，所以你必須使用 cmd 來編譯。  單檔案編譯  把 file.c 編譯成一個叫 run 的檔案  gcc file.c -o run  執行 run  .&#x2F;run  其中 file.c 是你的檔名，run">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-02-22T06:44:47.000Z">
-<meta property="article:modified_time" content="2024-08-19T12:44:42.941Z">
+<meta property="article:modified_time" content="2024-08-19T12:45:29.455Z">
 <meta property="article:author" content="Cell">
 <meta property="article:tag" content="台大">
 <meta property="article:tag" content="程式">
@@ -210,9 +210,9 @@
 <li><p>開超大陣列（也有可能會是 TLE）</p>
  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="built_in">array</span>[<span class="number">10000000000</span>][<span class="number">10000000000</span>];</span><br></pre></td></tr></table></figure>
 <p> 一般情況下是不至於開到一個這麼大的陣列，會遇到這個狀況的大概是 hash table 的題目（以計程的範圍而言），像這樣：</p>
- <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cube</span>&#123;</span></span><br><span class="line">    <span class="type">char</span> val[<span class="number">100</span>];</span><br><span class="line">    <span class="type">int</span> posx,posy,posz;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cube</span> <span class="title">tower</span>[1000][1000][1000];</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cube</span>&#123;</span></span><br><span class="line">    <span class="type">char</span> val[<span class="number">100</span>];</span><br><span class="line">    <span class="type">int</span> posx,posy,posz;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cube</span> <span class="title">tower</span>[1000][1000][1000];</span></span><br></pre></td></tr></table></figure>
 <p> 你開了一個 struct 的陣列，然後就太大爆掉了，請改用指標來存這些資料，像這樣。</p>
- <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cube</span>&#123;</span></span><br><span class="line">    <span class="type">char</span> val[<span class="number">100</span>];</span><br><span class="line">    <span class="type">int</span> posx,posy,posz;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cube</span> *<span class="title">tower</span>[1000][1000][1000];</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cube</span>&#123;</span></span><br><span class="line">    <span class="type">char</span> val[<span class="number">100</span>];</span><br><span class="line">    <span class="type">int</span> posx,posy,posz;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cube</span> *<span class="title">tower</span>[1000][1000][1000];</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>遞迴太深</p>
  <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">endless</span><span class="params">(<span class="type">int</span> i)</span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,i);</span><br><span class="line">    endless(i+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
