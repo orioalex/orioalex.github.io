@@ -1,4 +1,3 @@
-http://orioalex.github.io/2024/02/22/how_to_debug/
 http://orioalex.github.io/2024/09/13/waruiyume/
 http://orioalex.github.io/2024/06/06/11202courses/
 http://orioalex.github.io/2024/07/10/11204courses/
@@ -16,7 +15,5 @@ http://orioalex.github.io/tags/%E5%8F%B0%E5%A4%A7/
 http://orioalex.github.io/tags/%E5%BF%83%E5%BE%97/
 http://orioalex.github.io/tags/vocaloid/
 http://orioalex.github.io/tags/%E7%BF%BB%E8%AD%AF/
-http://orioalex.github.io/tags/%E7%A8%8B%E5%BC%8F/
 http://orioalex.github.io/categories/%E4%BF%AE%E8%AA%B2%E5%BF%83%E5%BE%97/
 http://orioalex.github.io/categories/%E7%BF%BB%E8%AD%AF/
-http://orioalex.github.io/categories/%E7%A8%8B%E5%BC%8F/
