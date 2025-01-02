@@ -15,7 +15,7 @@
 <meta property="og:description" content="這邊彙整了各種曾經遇過的奇怪問題，雖然有些東西不能算是靈異事件就是了。 HW0makeall: &lt;要編譯的檔案名稱&gt; 	&lt;編譯指令&gt;clean:	rm -rf &lt;編譯完的執行檔&gt; &lt;其他要刪的東西&gt; 作業應該只會需要這些。 HW1 - connection and IO multiplexing小心 \r\n有些助教的測資是用 \r\n 換行而不是">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-01-02T03:13:51.000Z">
-<meta property="article:modified_time" content="2025-01-02T06:18:04.767Z">
+<meta property="article:modified_time" content="2025-01-02T06:18:27.958Z">
 <meta property="article:author" content="Cell">
 <meta property="article:tag" content="台大">
 <meta property="article:tag" content="程式">
@@ -225,7 +225,7 @@ p.spoiler {
 <h3 id="read-return-0-但-errno-0"><a href="#read-return-0-但-errno-0" class="headerlink" title="read return 0 但 errno &#x3D; 0"></a>read return 0 但 errno &#x3D; 0</h3><p>大概是因為讀到 EOF 吧。</p>
 <h3 id="read-到奇怪的文字"><a href="#read-到奇怪的文字" class="headerlink" title="read 到奇怪的文字"></a>read 到奇怪的文字</h3><p>因為 read 不會自動在字串尾部補 \0，所以在 read 之前要先把 buffer 初始化成 0。</p>
 <h2 id="strtok-內包-strtok"><a href="#strtok-內包-strtok" class="headerlink" title="strtok 內包 strtok"></a>strtok 內包 strtok</h2><p>strtok 沒辦法用巢狀結構，所以必要的時候必須自己寫一個函式取代它。</p>
-<h2 id="pipe-內的訊息跑到奇怪的地方、read-write-跳出-wrong-fd"><a href="#pipe-內的訊息跑到奇怪的地方、read-write-跳出-wrong-fd" class="headerlink" title="pipe 內的訊息跑到奇怪的地方、read &#x2F; write 跳出 wrong fd"></a>pipe 內的訊息跑到奇怪的地方、read &#x2F; write 跳出 wrong fd</h2><p>我自己遇到兩次這個問題，第一次找半天找不到 bug 就乾脆整個從寫一次，結果還是遇到了這個問題。<br>後來是暴力列出所有時候誰開了幾號 fd，誰關了幾號 fd 慢慢手動驗證才找出問題。</p>
+<h2 id="pipe-內的訊息跑到奇怪的地方、read-write-跳出-wrong-fd"><a href="#pipe-內的訊息跑到奇怪的地方、read-write-跳出-wrong-fd" class="headerlink" title="pipe 內的訊息跑到奇怪的地方、read &#x2F; write 跳出 wrong fd"></a>pipe 內的訊息跑到奇怪的地方、read &#x2F; write 跳出 wrong fd</h2><p>我自己遇到兩次這個問題，第一次找半天找不到 bug 就乾脆整個重寫一次，結果還是遇到了這個問題。<br>後來是暴力列出所有時候誰開了幾號 fd，誰關了幾號 fd 慢慢手動驗證才找出問題。</p>
 <p>下面是我當初出問題的程式：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">dup2(ptc[READ],PARENT_READ_FD);</span><br><span class="line">dup2(ctp[WRITE],PARENT_WRITE_FD);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(ptc[READ]!=PARENT_READ_FD)&#123;</span><br><span class="line">    close(ptc[READ]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(ctp[WRITE]!=PARENT_WRITE_FD)&#123;</span><br><span class="line">    close(ctp[WRITE]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>後來發現，我漏掉了 ptc[READ]&#x3D;&#x3D;PARENT_WRITE_FD 和 ctp[WRITE]&#x3D;&#x3D;PARENT_READ_FD 的 case。</p>
