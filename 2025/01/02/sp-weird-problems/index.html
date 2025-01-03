@@ -15,7 +15,7 @@
 <meta property="og:description" content="這邊彙整了各種曾經遇過的奇怪問題，雖然有些東西不能算是靈異事件就是了。 HW0makeall: &lt;要編譯的檔案名稱&gt; 	&lt;編譯指令&gt;clean:	rm -rf &lt;編譯完的執行檔&gt; &lt;其他要刪的東西&gt; 作業應該只會需要這些。 HW1 - connection and IO multiplexing小心 \r\n有些助教的測資是用 \r\n 換行而不是">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-01-02T03:13:51.000Z">
-<meta property="article:modified_time" content="2025-01-02T06:18:27.958Z">
+<meta property="article:modified_time" content="2025-01-03T06:02:03.862Z">
 <meta property="article:author" content="Cell">
 <meta property="article:tag" content="台大">
 <meta property="article:tag" content="程式">
@@ -230,8 +230,8 @@ p.spoiler {
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">dup2(ptc[READ],PARENT_READ_FD);</span><br><span class="line">dup2(ctp[WRITE],PARENT_WRITE_FD);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(ptc[READ]!=PARENT_READ_FD)&#123;</span><br><span class="line">    close(ptc[READ]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(ctp[WRITE]!=PARENT_WRITE_FD)&#123;</span><br><span class="line">    close(ctp[WRITE]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>後來發現，我漏掉了 ptc[READ]&#x3D;&#x3D;PARENT_WRITE_FD 和 ctp[WRITE]&#x3D;&#x3D;PARENT_READ_FD 的 case。</p>
 <p>另一個可能是在 exec 的時候沒有先把多餘的 fd 關掉導致出現了不該存在的訊息管道。</p>
-<h1 id="HW4"><a href="#HW4" class="headerlink" title="HW4"></a>HW4</h1><h2 id="常數太大"><a href="#常數太大" class="headerlink" title="常數太大"></a>常數太大</h2><p>我一開始的程式執行時間大概是其他人的 4~5 倍，後來總算想辦法把常數壓下來的，不然我應該會被判 TLE。<br>大致上就是減少呼叫函式，以及儘可能地簡化 signal 和 lock 邏輯吧。</p>
-<h2 id="memory-leak"><a href="#memory-leak" class="headerlink" title="memory leak"></a>memory leak</h2><p>這個我真的不知道發生什麼事了。<br>我自己覺得該 free 的都 free 了，也用 detach 處理 thread，但還是被扣 memory leak。</p>
+<h1 id="HW4"><a href="#HW4" class="headerlink" title="HW4"></a>HW4</h1><h2 id="常數太大"><a href="#常數太大" class="headerlink" title="常數太大"></a>常數太大</h2><p>我一開始的程式執行時間大概是其他人的 4~5 倍，後來總算想辦法把常數壓下來了，不然我應該會被判 TLE。<br>大致上就是減少呼叫函式，以及儘可能地簡化 signal 和 lock 邏輯吧。</p>
+<h2 id="memory-leak"><a href="#memory-leak" class="headerlink" title="memory leak"></a>memory leak</h2><p>這個我真的不知道發生什麼事了。<br>我自己覺得該 free 的都 free 了，也用 detach 處理 thread，但還是被扣 memory leak。<br>我看大部分人都是約 10 萬個 unfree，但我是 17 個 unfree</p>
 <!-- flag of hidden posts -->
   </div>
 </article>
