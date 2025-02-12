@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://orioalex.github.io/2025/01/03/11301courses/</loc>
+    
+    <lastmod>2025-02-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://orioalex.github.io/2025/02/12/a-star-risk/</loc>
     
     <lastmod>2025-02-12</lastmod>
@@ -14,15 +23,6 @@
     <loc>http://orioalex.github.io/2025/02/10/v2pn/</loc>
     
     <lastmod>2025-02-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://orioalex.github.io/2025/01/03/11301courses/</loc>
-    
-    <lastmod>2025-02-11</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
